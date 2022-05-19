@@ -3,11 +3,14 @@ import os
 import pyfiglet
 import time
 
+# This file contains extra functions
+# These are here because they are alot of text
+# Or they are used often 
+
+
 # Clear the screen
 # Operting system detection funciton from stack overflow modifed.
 # https://stackoverflow.com/questions/8220108/how-do-i-check-the-operating-system-in-python
-
-
 def screenClear():
     if sys.platform == "linux" or sys.platform == "linux2":
         os.system('clear')
@@ -15,6 +18,7 @@ def screenClear():
         os.system('clear')
     elif sys.platform == "win32":
         os.system('cls')
+
 
 def rulesScreen():
     print("""The rules of this game are:
@@ -30,6 +34,7 @@ def rulesScreen():
     6. Pressing 0 will display the score and exit.""")
     input("Press the enter key to continue to the menu: ")
     screenClear()
+
 
 # Display Welcome Message
 def welcomeMessage():
