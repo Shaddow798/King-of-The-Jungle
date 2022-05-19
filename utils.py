@@ -1,5 +1,8 @@
 import sys
 import os
+import pyfiglet
+import time
+
 # Clear the screen
 # Operting system detection funciton from stack overflow modifed.
 # https://stackoverflow.com/questions/8220108/how-do-i-check-the-operating-system-in-python
@@ -26,4 +29,10 @@ def rulesScreen():
     5. The winner will be displayed and given a point.
     6. Pressing 0 will display the score and exit.""")
     input("Press the enter key to continue to the menu: ")
+    screenClear()
+
+# Display Welcome Message
+def welcomeMessage():
+    print(pyfiglet.figlet_format("Welcome to King of the Jungle."))
+    time.sleep(3)
     screenClear()

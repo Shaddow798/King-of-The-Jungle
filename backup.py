@@ -5,6 +5,7 @@ import random
 import pyfiglet
 import sys
 
+
 # Define the scores so they wont be overwriten
 playerScore = 0
 computerScore = 0
