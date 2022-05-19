@@ -16,26 +16,34 @@ def menu(playerScore, computerScore):
         1) Lion
         2) Elephant
         3) Mouse
-        0) Exit and view the score""")
+        0) Exit and view the score
+        S) View the score without quiting
+        """)
 
     # Reset the varibles for the players animals so it wont cause issues.
     playerAnimalNumb = ""
     playerAnimal = ""
 
     # Get the users imput and make sure its vaild.
-    while playerAnimalNumb not in ['0', '1', '2', '3']:
+    while playerAnimalNumb not in ['0', '1', '2', '3', 'S']:
         playerAnimalNumb = str.upper(input("Your selection: "))
-
     # Handle if the user wants to quit the program
     if playerAnimalNumb == "0":
+        quitting = True
         if playerScore == 0 and computerScore == 0:
             utils.screenClear()
             print("Thanks for playing and goodbye")
             print("There is no need to see the score since no one has scored")
             exit()
+        else:
+            print("Thanks for playing")
+            print("This is the scoreboard")
+            scoreBoard(playerScore, computerScore, quitting)
+    if playerAnimalNumb == "S":
+        quitting = False
         print("Thanks for playing")
         print("This is the scoreboard")
-        scoreBoard(playerScore, computerScore)
+        scoreBoard(playerScore, computerScore, quitting)
     # Convert the number imput into a word so it is easier to understand
     elif playerAnimalNumb == "1":
         playerAnimal = "lion"
@@ -89,17 +97,19 @@ def mainGame(playerAnimal, computerAnimal, playerScore, computerScore):
             computerScore += 1
 
     # Let the user go back to the main menu
-    input("Argh press enter to enter the main menu")
+    input("Argh press enter to enter the main menu: ")
     utils.screenClear()
     playerAnimal, computerAnimal = "", ""
     return playerAnimal, computerAnimal, playerScore, computerScore
 
 
 # This is the scoreboard that tells the players if they won or lost.
-def scoreBoard(playerScore, computerScore):
-    print("Welcome to the scoreboard as it stands the score currently is:")
+def scoreBoard(playerScore, computerScore, quitting):
+    print(
+        "Welcome to the scoreboard currently the score currently is: "
+    )
     if playerScore > computerScore:
-        print("The player is winning and computer is loosing")
+        print("The player is beating the computer.")
         print("The score is {} for the player and {} for the computer".format(
             playerScore, computerScore))
     elif playerScore == computerScore:
@@ -107,9 +117,10 @@ def scoreBoard(playerScore, computerScore):
         print("The score is {} for both players".format(playerScore))
     elif playerScore < computerScore:
         print("The computer is winning and the players is loosing")
-        print("The score is {} for the computer and {} for tge player".format(
+        print("The score is {} for the computer and {} for the player".format(
             computerScore, playerScore))
-    exit()
+        if quitting == True:
+            exit()
 
 
 # Displays the messages you first see when you start the program.
@@ -122,4 +133,5 @@ while True:
     # Runs the main menu
     playerAnimal, computerAnimal = menu(playerScore, computerScore)
     # Runs the main game and keeps track of scores.
-    playerAnimal, computerAnimal, playerScore, computerScore = mainGame(playerAnimal, computerAnimal, playerScore, computerScore)
+    playerAnimal, computerAnimal, playerScore, computerScore = mainGame(
+        playerAnimal, computerAnimal, playerScore, computerScore)
